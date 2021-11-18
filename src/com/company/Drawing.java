@@ -1,10 +1,17 @@
 package com.company;
-import java.awt.*;
-import javax.swing.*;
-import java.io.*;
+
+import javax.swing.JPanel;
+import java.awt.Color;
+import java.awt.Graphics;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.awt.event.*;
-
 
 
 public class Drawing extends JPanel implements MouseListener, MouseMotionListener, Serializable {
@@ -12,20 +19,20 @@ public class Drawing extends JPanel implements MouseListener, MouseMotionListene
     public ArrayList<Figure> figures;
     private String figuretype;
     private Color c;
-    private final int x,y;
+    private final int x, y;
     private Point firstPoint;
     private Point secondPoint;
     protected Figure currentFigure;
 
-    public Drawing(){
+    public Drawing() {
         super();
         addMouseListener(this);
         addMouseMotionListener(this);
         c = Color.black;
         figuretype = "Rectangle";
         figures = new ArrayList<Figure>();
-        x=0;
-        y=0;
+        x = 0;
+        y = 0;
 
     }
 
@@ -35,20 +42,20 @@ public class Drawing extends JPanel implements MouseListener, MouseMotionListene
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
         setBackground(Color.white);
-        for(Figure f : figures){
+        for (Figure f : figures) {
             f.draw(g);
-            this.repaint();
         }
     }
 
-    public void setBackColor(Color color){
-        this.c=color;
-    }
-    public void setFigure(String arg){
-        this.figuretype=arg;
+    public void setBackColor(Color color) {
+        this.c = color;
     }
 
-    public ArrayList <Figure> getList(){
+    public void setFigure(String arg) {
+        this.figuretype = arg;
+    }
+
+    public ArrayList<Figure> getList() {
         return this.figures;
     }
 
@@ -85,13 +92,13 @@ public class Drawing extends JPanel implements MouseListener, MouseMotionListene
         if (c != Color.white) {
             firstPoint = new Point(e.getX(), e.getY());
             if (figuretype.equals("Ellipse")) {
-                figures.add(currentFigure= new Ellipse(firstPoint.getX(), firstPoint.getY(), this.c));
+                figures.add(currentFigure = new Ellipse(firstPoint.getX(), firstPoint.getY(), this.c));
             } else if (figuretype.equals("Rectangle")) {
-                figures.add(currentFigure= new Rectangle(firstPoint.getX(), firstPoint.getY(), this.c));
+                figures.add(currentFigure = new Rectangle(firstPoint.getX(), firstPoint.getY(), this.c));
             } else if (figuretype.equals("Cercle")) {
-                figures.add(currentFigure= new Cercle(firstPoint.getX(), firstPoint.getY(), this.c));
+                figures.add(currentFigure = new Cercle(firstPoint.getX(), firstPoint.getY(), this.c));
             } else if (figuretype.equals("Carre")) {
-                figures.add(currentFigure= new Carre(firstPoint.getX(), firstPoint.getY(), this.c));
+                figures.add(currentFigure = new Carre(firstPoint.getX(), firstPoint.getY(), this.c));
             }
         }
 
@@ -105,7 +112,6 @@ public class Drawing extends JPanel implements MouseListener, MouseMotionListene
         System.out.println(figures);
         repaint();
     }
-
 
 
     public void ctrlZ() {

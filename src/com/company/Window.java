@@ -1,22 +1,33 @@
 package com.company;
-import javax.swing.*;
-import java.awt.*;
-import java.awt.event.*;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-//
 
-class Window extends JFrame implements ActionListener{
+import javax.swing.JButton;
+import javax.swing.JFileChooser;
+import javax.swing.JFrame;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.KeyStroke;
+import java.awt.Color;
+import java.awt.Container;
+import java.awt.GridLayout;
+import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+
+class Window extends JFrame implements ActionListener {
 
     private final Drawing d1;
 
-    public Window(String Title, int x,int y){
+    public Window(String Title, int x, int y) {
         super(Title);
-        this.d1= new Drawing();
+        this.d1 = new Drawing();
         this.setSize(x, y);
         this.setVisible(true);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        Container contentPanel = this.getContentPane() ;
+        Container contentPanel = this.getContentPane();
 
 
         JMenuBar menu = new JMenuBar();
@@ -26,23 +37,23 @@ class Window extends JFrame implements ActionListener{
 
         JMenuItem NouveauDessin = new JMenuItem("Nouveau");
         NouveauDessin.addActionListener(this);
-        NouveauDessin.setAccelerator(KeyStroke.getKeyStroke('N',Toolkit.getDefaultToolkit().getMenuShortcutKeyMask(),false));
+        NouveauDessin.setAccelerator(KeyStroke.getKeyStroke('N', Toolkit.getDefaultToolkit().getMenuShortcutKeyMask(), false));
 
         JMenuItem Ouvrir = new JMenuItem("Ouvrir");
         Ouvrir.addActionListener(this);
-        Ouvrir.setAccelerator(KeyStroke.getKeyStroke('O',Toolkit.getDefaultToolkit().getMenuShortcutKeyMask(),false));
+        Ouvrir.setAccelerator(KeyStroke.getKeyStroke('O', Toolkit.getDefaultToolkit().getMenuShortcutKeyMask(), false));
 
         JMenuItem Enregistrer = new JMenuItem("Enregistrer");
-        Enregistrer.setAccelerator(KeyStroke.getKeyStroke('S',Toolkit.getDefaultToolkit().getMenuShortcutKeyMask(),false));
+        Enregistrer.setAccelerator(KeyStroke.getKeyStroke('S', Toolkit.getDefaultToolkit().getMenuShortcutKeyMask(), false));
         Enregistrer.addActionListener(this);
 
         JMenuItem CtrlZ = new JMenuItem("CtrlZ");
-        CtrlZ.setAccelerator(KeyStroke.getKeyStroke('Z',Toolkit.getDefaultToolkit().getMenuShortcutKeyMask(),false));
+        CtrlZ.setAccelerator(KeyStroke.getKeyStroke('Z', Toolkit.getDefaultToolkit().getMenuShortcutKeyMask(), false));
         CtrlZ.addActionListener(this);
 
         JMenuItem Quitter = new JMenuItem("Quitter");
         Quitter.addActionListener(this);
-        Quitter.setAccelerator(KeyStroke.getKeyStroke('Q',Toolkit.getDefaultToolkit().getMenuShortcutKeyMask(),false));
+        Quitter.setAccelerator(KeyStroke.getKeyStroke('Q', Toolkit.getDefaultToolkit().getMenuShortcutKeyMask(), false));
 
         Fichier.add(NouveauDessin);
         Fichier.add(Ouvrir);
@@ -55,7 +66,7 @@ class Window extends JFrame implements ActionListener{
 
 
         JMenu Apropos = new JMenu("A propos");
-        JMenuItem Auteur = new JMenuItem("Auteur") ;
+        JMenuItem Auteur = new JMenuItem("Auteur");
         Auteur.addActionListener(this);
         Apropos.add(Auteur);
         menu.add(Apropos);
@@ -64,16 +75,14 @@ class Window extends JFrame implements ActionListener{
         setVisible(true);
 
 
-
         JPanel panneau = new JPanel();
-        panneau.setLayout(new GridLayout(1,2));
+        panneau.setLayout(new GridLayout(1, 2));
 
         JPanel Couleur = new JPanel();
-        Couleur.setLayout(new GridLayout(2,4));
+        Couleur.setLayout(new GridLayout(2, 4));
 
         JPanel Figure = new JPanel();
-        Figure.setLayout(new GridLayout(2,2));
-
+        Figure.setLayout(new GridLayout(2, 2));
 
 
         JButton noir = new JButton("Noir");
@@ -119,7 +128,6 @@ class Window extends JFrame implements ActionListener{
         Couleur.add(orange);
 
 
-
         JButton Ellipse = new JButton("Ellipse");
         Ellipse.addActionListener(this);
 
@@ -138,20 +146,18 @@ class Window extends JFrame implements ActionListener{
         Figure.add(Cercle);
 
 
-
-
         panneau.add(Couleur);
         panneau.add(Figure);
         contentPanel.add(panneau, "South");
 
 
-        contentPanel.add(d1,"Center");
+        contentPanel.add(d1, "Center");
 
         setVisible(true);
     }
 
-    public void actionPerformed(ActionEvent e)  {
-        String cmd =e.getActionCommand();
+    public void actionPerformed(ActionEvent e) {
+        String cmd = e.getActionCommand();
         switch (cmd) {
             case "Noir" -> {
                 System.out.println("La couleur est noire");
@@ -226,27 +232,26 @@ class Window extends JFrame implements ActionListener{
 
             case "Enregistrer" -> {
                 JFileChooser choixsave = new JFileChooser();
-                int user= choixsave.showSaveDialog(this);
-                if (user == JFileChooser.APPROVE_OPTION)
-                {
+                int user = choixsave.showSaveDialog(this);
+                if (user == JFileChooser.APPROVE_OPTION) {
                     String fileToSave = choixsave.getSelectedFile().getAbsolutePath();
                     d1.save(fileToSave);
-                } else
-                {
+                } else {
                     System.out.println("Enregistrement annulé");
                 }
                 break;
             }
 
-                case "Quitter" -> System.exit(0);
-            }
+            case "Quitter" -> System.exit(0);
+        }
 
 
     }
-//
-    public static void main(String [] args) {
 
-        Window win = new Window("Test",800,600);
+    //
+    public static void main(String[] args) {
+
+        Window win = new Window("Test", 800, 600);
     }
 
 
