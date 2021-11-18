@@ -243,7 +243,7 @@ class Window extends JFrame implements ActionListener{
 
 
     }
-
+//
     public static void main(String [] args) {
 
         Window win = new Window("Test",800,600);
