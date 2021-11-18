@@ -1,7 +1,7 @@
 package com.company;
 
 import java.io.*;
-
+//
 class Point implements  Serializable{
 
     private int x;

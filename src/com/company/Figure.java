@@ -1,7 +1,7 @@
 package com.company;
 import java.awt.*;
 import java.io.*;
-
+//
 public abstract class Figure implements Serializable{
     protected Point p;
     protected Color c;

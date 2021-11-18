@@ -4,7 +4,7 @@ import java.awt.*;
 import java.awt.event.*;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
-
+//
 
 class Window extends JFrame implements ActionListener{
 

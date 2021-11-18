@@ -1,7 +1,7 @@
 package com.company;
 import java.awt.*;
 import java.io.*;
-
+//
 class Rectangle extends Figure{
 
     protected int longueur;

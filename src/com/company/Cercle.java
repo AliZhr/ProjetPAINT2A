@@ -1,7 +1,7 @@
 package com.company;
 import java.awt.Color;
 import java.awt.Graphics;
-
+//
 class Cercle extends Ellipse{
 
     public Cercle(int px, int py, Color c){

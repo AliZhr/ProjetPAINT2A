@@ -1,6 +1,6 @@
 package com.company;
 import java.awt.*;
-
+//
 
 class Ellipse extends Figure{
     protected int g_axe;
